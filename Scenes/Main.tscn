@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://5ma0tablnthg"]
+
+[ext_resource type="Texture2D" uid="uid://dokjnls64qhbb" path="res://Vectors/inf_logo.png" id="1_rgh2o"]
+[ext_resource type="FontFile" uid="uid://obarq1venu61" path="res://Fonts/Audiowide-Regular.ttf" id="2_pbw6q"]
+[ext_resource type="Script" uid="uid://bu8yu0lbphl60" path="res://Scripts/random_thing.gd" id="3_v1gob"]
+[ext_resource type="Script" uid="uid://cx3obst7x4uhc" path="res://Scripts/play.gd" id="4_jw32o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fos0i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3dxm6"]
+font = ExtResource("2_pbw6q")
+font_size = 40
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Node3D" type="Node3D" unique_id=99090446]
+
+[node name="Control" type="Control" parent="." unique_id=1877318150]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InfLogo" type="Sprite2D" parent="Control" unique_id=951846896]
+position = Vector2(257, 154)
+scale = Vector2(0.8356644, 0.83566433)
+texture = ExtResource("1_rgh2o")
+
+[node name="random" type="Label" parent="Control/InfLogo" unique_id=35803560]
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 1.019
+anchor_right = 0.76400006
+anchor_bottom = 1.4030001
+offset_left = -219.43861
+offset_top = -71.52454
+offset_right = -219.3207
+offset_bottom = -71.43654
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fos0i")
+text = "son"
+label_settings = SubResource("LabelSettings_3dxm6")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_v1gob")
+
+[node name="Button" type="Button" parent="Control" unique_id=178372036]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 281.0
+offset_right = 380.0
+offset_bottom = 341.0
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+text = "Play"
+script = ExtResource("4_jw32o")

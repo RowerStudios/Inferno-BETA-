@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://obarq1venu61" path="res://Fonts/Audiowide-Regular.ttf" id="2_pbw6q"]
 [ext_resource type="Script" uid="uid://bu8yu0lbphl60" path="res://Scripts/random_thing.gd" id="3_v1gob"]
 [ext_resource type="Script" uid="uid://cx3obst7x4uhc" path="res://Scripts/play.gd" id="4_jw32o"]
+[ext_resource type="StyleBox" uid="uid://1ck048d6cmb6" path="res://Styles/corner.tres" id="5_pbw6q"]
+[ext_resource type="Script" uid="uid://dfynmpikgbc0r" path="res://Scripts/chat.gd" id="6_v1gob"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fos0i"]
 
@@ -12,6 +14,20 @@ font = ExtResource("2_pbw6q")
 font_size = 40
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="Node3D" type="Node3D" unique_id=99090446]
 
@@ -50,12 +66,119 @@ vertical_alignment = 1
 script = ExtResource("3_v1gob")
 
 [node name="Button" type="Button" parent="Control" unique_id=178372036]
-layout_mode = 0
-offset_left = 141.0
-offset_top = 281.0
-offset_right = 380.0
-offset_bottom = 341.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.123
+anchor_top = 0.43600002
+anchor_right = 0.33
+anchor_bottom = 0.53000003
+offset_left = -0.44999695
+offset_top = 0.2159729
+offset_right = 0.5
+offset_bottom = -0.32000732
 theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
 text = "Play"
 script = ExtResource("4_jw32o")
+
+[node name="Chat" type="Control" parent="." unique_id=2645024]
+layout_mode = 3
+anchor_left = 0.54
+anchor_top = 0.53900003
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.08001709
+offset_top = -0.2720337
+offset_right = -3.7600098
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_v1gob")
+
+[node name="Chats" type="Panel" parent="Chat" unique_id=65439781]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.994
+anchor_bottom = 0.77900004
+offset_right = 0.16796875
+offset_bottom = 0.07897949
+theme_override_styles/panel = ExtResource("5_pbw6q")
+
+[node name="ChatBox" type="TextEdit" parent="Chat/Chats" unique_id=712554009]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 1.0
+anchor_right = 0.85300004
+anchor_bottom = 1.202
+offset_left = -0.02216804
+offset_top = 8.0
+offset_right = 0.04534912
+offset_bottom = -0.06600952
+theme_override_styles/normal = SubResource("StyleBoxFlat_pbw6q")
+placeholder_text = "Press \"/\" for global chat and T for team chat"
+
+[node name="C_O2" type="Button" parent="Chat/Chats/ChatBox" unique_id=1230835394]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.86600006
+anchor_top = 0.799
+anchor_right = 0.994
+anchor_bottom = 0.94000006
+offset_left = 67.28998
+offset_top = -33.161003
+offset_right = 77.609985
+offset_bottom = 3.3399963
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_pbw6q")
+text = "<"
+
+[node name="C_O" type="Button" parent="Chat/Chats" unique_id=1299603352]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = -0.24000001
+anchor_right = 0.53400004
+anchor_bottom = -0.039
+offset_left = 0.96643066
+offset_top = -0.07999802
+offset_right = 0.2482605
+offset_bottom = 0.08699989
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_pbw6q")
+text = "⬎"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Chat/Chats" unique_id=740830706]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0070001
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = -18.91333
+offset_bottom = -14.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Chat/Chats/ScrollContainer" unique_id=546233078]
+layout_mode = 2
+
+[node name="PLACEHOLDER_chat" type="Label" parent="Chat/Chats/ScrollContainer" unique_id=805593092]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[NAME] :"
+vertical_alignment = 1
+
+[node name="chat_label" type="Label" parent="Chat/Chats/ScrollContainer/PLACEHOLDER_chat" unique_id=681219606]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0840001
+anchor_right = 6.012
+anchor_bottom = 1.0710001
+offset_left = 0.027992249
+offset_right = 0.0039978027
+offset_bottom = 0.011997223
+theme_override_font_sizes/font_size = 20
+text = "Text Here"
+vertical_alignment = 1

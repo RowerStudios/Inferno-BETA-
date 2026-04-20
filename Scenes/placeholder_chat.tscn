@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dth4mpp5tn47x"]
+
+[node name="PLACEHOLDER_chat" type="Label" unique_id=97213507]
+offset_left = 637.0
+offset_top = 365.0
+offset_right = 720.0
+offset_bottom = 393.0
+theme_override_font_sizes/font_size = 20
+text = "[NAME] :"
+vertical_alignment = 1
+
+[node name="chat_label" type="Label" parent="." unique_id=1222244013]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0840001
+anchor_right = 6.012
+anchor_bottom = 1.0710001
+offset_left = 0.027992249
+offset_right = 0.0039978027
+offset_bottom = 0.011997223
+theme_override_font_sizes/font_size = 20
+text = "Text Here"
+vertical_alignment = 1

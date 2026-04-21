@@ -7,6 +7,18 @@
 [ext_resource type="StyleBox" uid="uid://1ck048d6cmb6" path="res://Styles/corner.tres" id="5_pbw6q"]
 [ext_resource type="Script" uid="uid://dfynmpikgbc0r" path="res://Scripts/chat.gd" id="6_v1gob"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fos0i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dxm6"]
@@ -41,12 +53,21 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InfLogo" type="Sprite2D" parent="Control" unique_id=951846896]
+[node name="Panel" type="Panel" parent="Control" unique_id=997205828]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99600005
+anchor_bottom = 0.998
+offset_right = -0.4000244
+offset_bottom = 0.28796387
+theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
+
+[node name="InfLogo" type="Sprite2D" parent="Control/Panel" unique_id=951846896]
 position = Vector2(257, 154)
 scale = Vector2(0.8356644, 0.83566433)
 texture = ExtResource("1_rgh2o")
 
-[node name="random" type="Label" parent="Control/InfLogo" unique_id=35803560]
+[node name="random" type="Label" parent="Control/Panel/InfLogo" unique_id=35803560]
 anchors_preset = -1
 anchor_left = 0.23
 anchor_top = 1.019
@@ -65,23 +86,42 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_v1gob")
 
-[node name="Button" type="Button" parent="Control" unique_id=178372036]
+[node name="Button" type="Button" parent="Control/Panel" unique_id=178372036]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.123
 anchor_top = 0.43600002
 anchor_right = 0.33
 anchor_bottom = 0.53000003
-offset_left = -0.44999695
-offset_top = 0.2159729
-offset_right = 0.5
-offset_bottom = -0.32000732
+offset_left = 0.16499329
+offset_top = 0.65197754
+offset_right = 1.1149902
+offset_bottom = 0.115997314
 theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
 theme_override_styles/pressed = ExtResource("5_pbw6q")
 theme_override_styles/hover = ExtResource("5_pbw6q")
 text = "Play"
+script = ExtResource("4_jw32o")
+
+[node name="Button2" type="Button" parent="Control/Panel" unique_id=1337645273]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12200001
+anchor_top = 0.545
+anchor_right = 0.33
+anchor_bottom = 0.638
+offset_left = 0.3099823
+offset_top = 0.56500244
+offset_right = 0.10998535
+offset_bottom = 0.67300415
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "Settings"
 script = ExtResource("4_jw32o")
 
 [node name="Chat" type="Control" parent="." unique_id=2645024]
@@ -102,8 +142,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.994
 anchor_bottom = 0.77900004
+offset_top = 300.0
 offset_right = 0.16796875
-offset_bottom = 0.07897949
+offset_bottom = 300.07898
 theme_override_styles/panel = ExtResource("5_pbw6q")
 
 [node name="ChatBox" type="TextEdit" parent="Chat/Chats" unique_id=712554009]
@@ -182,3 +223,9 @@ offset_bottom = 0.011997223
 theme_override_font_sizes/font_size = 20
 text = "Text Here"
 vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="." unique_id=286671250]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

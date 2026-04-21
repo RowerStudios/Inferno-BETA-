@@ -9,13 +9,16 @@ extends Control
 
 
 var _pos: Vector2
-var boolean: bool = false
+var boolean := false
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ENTER:
 			_chat()
 			ChatBox.text = ""
 			get_viewport().set_input_as_handled()
+		if event.keycode == KEY_SLASH:
+			_press()
+			
 
 func _send_sys(msg):
 	var new_chat = PLACE_holder.duplicate()
@@ -34,7 +37,7 @@ func _ready() -> void:
 func _press():
 	print("hi")
 	var tween = create_tween()
-	var target_position = _pos if boolean else Vector2(0, 298)
+	var target_position = Vector2(0, 300) if boolean else Vector2(0, 0)
 	tween.tween_property(frame, "position", target_position, 0.1).set_trans(Tween.TRANS_QUAD)
 	boolean = !boolean
 	

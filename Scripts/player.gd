@@ -1,11 +1,16 @@
 extends CharacterBody3D
 
+#movement variables
 const BASESPEED = 8.0
 const SPRINTMULTIPLIER = 1.7
-const JUMP_VELOCITY = 9
+const JUMP_VELOCITY = 7
 const SENSITIVITY = 0.002
 
-# 1. This variable acts as your "On/Off" switch
+#bob variables
+const BOB_FREQ = 2.0
+const BOB_AMP = 0.08
+var t_bob = 0.0
+
 var is_playing: bool = false
 
 @onready var head = $Head
@@ -13,7 +18,7 @@ var is_playing: bool = false
 func _ready():
 	var sender_node = get_node("/root/Node3D/Control/Panel/Button")
 	sender_node.game_started.connect(playing)
-# 2. This is the function other scripts will call
+
 func playing():
 	is_playing = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -25,7 +30,7 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 
 func _physics_process(delta: float) -> void:
-	# 3. If the game hasn't started, skip all movement logic
+	#If the game hasn't started, skip all movement logic
 	if not is_playing:
 		return 
 
@@ -37,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_pressed("sprint") and is_on_floor():
 		SPEED = BASESPEED * SPRINTMULTIPLIER
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -49,5 +54,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	# Head bob
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(t_bob)
+	
 	move_and_slide()
+func _headbob(time) -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	return pos

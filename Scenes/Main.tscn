@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cx3obst7x4uhc" path="res://Scripts/play.gd" id="4_jw32o"]
 [ext_resource type="StyleBox" uid="uid://1ck048d6cmb6" path="res://Styles/corner.tres" id="5_pbw6q"]
 [ext_resource type="Script" uid="uid://dfynmpikgbc0r" path="res://Scripts/chat.gd" id="6_v1gob"]
+[ext_resource type="Texture2D" uid="uid://dg4mf4aws0co2" path="res://Models/woodcolor.webp" id="7_50glp"]
+[ext_resource type="ArrayMesh" uid="uid://2g4lo2b43ak" path="res://Models/SimpleCrate.obj" id="8_vy5pj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
 content_margin_left = 0.0
@@ -41,6 +43,17 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmxlf"]
+albedo_texture = ExtResource("7_50glp")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_50glp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vy5pj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kpch"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_grg3l"]
+
 [node name="Node3D" type="Node3D" unique_id=99090446]
 
 [node name="Control" type="Control" parent="." unique_id=1877318150]
@@ -59,7 +72,7 @@ anchors_preset = -1
 anchor_right = 0.99600005
 anchor_bottom = 0.998
 offset_right = -0.4000244
-offset_bottom = 0.28796387
+offset_bottom = 16.287964
 theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
 
 [node name="InfLogo" type="Sprite2D" parent="Control/Panel" unique_id=951846896]
@@ -229,3 +242,33 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="SimpleCrate" type="MeshInstance3D" parent="." unique_id=1544128801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011596918, -1.003188, -0.22633266)
+material_override = SubResource("StandardMaterial3D_bmxlf")
+mesh = ExtResource("8_vy5pj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SimpleCrate" unique_id=1177941847]
+physics_material_override = SubResource("PhysicsMaterial_50glp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleCrate/StaticBody3D" unique_id=587134663]
+transform = Transform3D(2.0533156, 0, 0, 0, 2.0045197, 0, 0, 0, 2.0997036, 0, 0, 0)
+shape = SubResource("BoxShape3D_vy5pj")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=840630709]
+transform = Transform3D(0.980661, 0, 0, 0, 0.7381921, 0, 0, 0, 1, 0, 0.431952, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1125106102]
+shape = SubResource("CapsuleShape3D_4kpch")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=107916190]
+transform = Transform3D(-3.2951682e-08, 0, 0.71976507, 0, 0.99999994, 0, -0.7538466, 0, -3.146193e-08, 0, 0.42706293, -0.12401819)
+mesh = SubResource("CapsuleMesh_grg3l")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D" unique_id=1146257873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D" unique_id=584076566]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=41629092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9618573, 1.1770076, -1.0180575)

@@ -2,9 +2,6 @@ extends CharacterBody3D
 
 const BASESPEED = 8.0
 const SPRINTMULTIPLIER = 1.7
-
-
-
 const JUMP_VELOCITY = 9
 const SENSITIVITY = 0.002
 

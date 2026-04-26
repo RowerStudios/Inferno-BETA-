@@ -27,7 +27,7 @@ Discord_tick="*uid://crpm5uovok2xn"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/GodotTogether/plugin.cfg")
 
 [filesystem]
 

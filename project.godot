@@ -13,7 +13,13 @@ config_version=5
 config/name="Inferno"
 run/main_scene="uid://5ma0tablnthg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+boot_splash/use_filter=false
+config/icon="uid://p1b60wqcuwge"
+
+[audio]
+
+buses/default_bus_layout="uid://blukvxhb74f8r"
 
 [autoload]
 
@@ -21,7 +27,7 @@ Discord_tick="*uid://crpm5uovok2xn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/discord-game-sdk-godot/plugin.cfg")
+enabled=PackedStringArray()
 
 [filesystem]
 

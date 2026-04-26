@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://5ma0tablnthg"]
 
+[ext_resource type="Script" uid="uid://n416ljq60vnp" path="res://Scripts/sound.gd" id="1_346fj"]
 [ext_resource type="Texture2D" uid="uid://dokjnls64qhbb" path="res://Vectors/inf_logo.png" id="1_rgh2o"]
 [ext_resource type="FontFile" uid="uid://obarq1venu61" path="res://Fonts/Audiowide-Regular.ttf" id="2_pbw6q"]
 [ext_resource type="Script" uid="uid://bu8yu0lbphl60" path="res://Scripts/random_thing.gd" id="3_v1gob"]
@@ -16,6 +17,10 @@
 [ext_resource type="Shader" uid="uid://6averdud7xpo" path="res://Shaders/explosion.tres" id="13_erwvk"]
 [ext_resource type="Texture2D" uid="uid://bfe0j2f5t8ksy" path="res://Textures/T_Noise_001R.png" id="14_2w5on"]
 [ext_resource type="ArrayMesh" uid="uid://p7vd7d241lgg" path="res://Models/smoke_explosion cloud.obj" id="15_346fj"]
+<<<<<<< HEAD
+=======
+[ext_resource type="AudioStream" uid="uid://dt6k51ui1xvjk" path="res://Sounds/Doom_eternal_lob.mp3" id="17_2w5on"]
+>>>>>>> b28f6a5 (release commit 0.01v)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
 content_margin_left = 0.0
@@ -90,6 +95,7 @@ points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4
 volumetric_fog_enabled = true
 
 [node name="Node3D" type="Node3D" unique_id=99090446]
+script = ExtResource("1_346fj")
 
 [node name="Control" type="Control" parent="." unique_id=1877318150]
 layout_mode = 3
@@ -512,3 +518,9 @@ transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.2588
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1059403429]
 environment = SubResource("Environment_erwvk")
+<<<<<<< HEAD
+=======
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1593048629]
+stream = ExtResource("17_2w5on")
+>>>>>>> b28f6a5 (release commit 0.01v)

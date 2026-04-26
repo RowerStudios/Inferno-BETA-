@@ -4,6 +4,7 @@ extends Button
 @onready var bck_offset2 = pivot_offset_ratio
 @onready var panel = $"../.."
 @onready var Main = $"../../../Settings"
+@onready var sound = $"../../../AudioStreamPlayer3D"
 signal game_started
 
 func _play():
@@ -23,6 +24,7 @@ func _ready() -> void:
 
 func _press() -> void:
 	print("begin")
+	sound.bus = "Muffle"
 	var new_tween = create_tween()
 	new_tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
 	_play()

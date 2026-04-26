@@ -3,11 +3,13 @@ extends Button
 @onready var bck_vector = pivot_offset
 @onready var bck_offset2 = pivot_offset_ratio
 @onready var panel = get_node("/root/Node3D/Control/Panel") 
+@onready var sound = $"../../../AudioStreamPlayer3D"
 @onready var control = get_node("/root/Node3D/Control") 
 signal game_started
 
 func _play():
 	panel.visible = false
+	sound.playing = false
 	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	game_started.emit()
 

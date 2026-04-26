@@ -4,9 +4,11 @@ extends Button
 @onready var bck_offset2 = pivot_offset_ratio
 @onready var panel = $"../../.."
 @onready var Main = $"../../../../Control"
+@onready var sound = $"../../../../AudioStreamPlayer3D"
 signal game_started
 
 func _play():
+	sound.bus = "Master"
 	Main.visible = true
 	panel.visible = false
 

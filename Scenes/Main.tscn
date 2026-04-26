@@ -17,10 +17,8 @@
 [ext_resource type="Shader" uid="uid://6averdud7xpo" path="res://Shaders/explosion.tres" id="13_erwvk"]
 [ext_resource type="Texture2D" uid="uid://bfe0j2f5t8ksy" path="res://Textures/T_Noise_001R.png" id="14_2w5on"]
 [ext_resource type="ArrayMesh" uid="uid://p7vd7d241lgg" path="res://Models/smoke_explosion cloud.obj" id="15_346fj"]
-<<<<<<< HEAD
-=======
 [ext_resource type="AudioStream" uid="uid://dt6k51ui1xvjk" path="res://Sounds/Doom_eternal_lob.mp3" id="17_2w5on"]
->>>>>>> b28f6a5 (release commit 0.01v)
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
 content_margin_left = 0.0
@@ -518,9 +516,8 @@ transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.2588
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1059403429]
 environment = SubResource("Environment_erwvk")
-<<<<<<< HEAD
-=======
+
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1593048629]
 stream = ExtResource("17_2w5on")
->>>>>>> b28f6a5 (release commit 0.01v)
+

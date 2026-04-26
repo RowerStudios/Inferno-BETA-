@@ -13,6 +13,9 @@
 [ext_resource type="ArrayMesh" uid="uid://2g4lo2b43ak" path="res://Models/SimpleCrate.obj" id="8_vy5pj"]
 [ext_resource type="Script" uid="uid://bt5rfujxt87t2" path="res://Scripts/panel.gd" id="9_grg3l"]
 [ext_resource type="Script" uid="uid://dalthvvweypcf" path="res://Scripts/player.gd" id="9_vy5pj"]
+[ext_resource type="Shader" uid="uid://6averdud7xpo" path="res://Shaders/explosion.tres" id="13_erwvk"]
+[ext_resource type="Texture2D" uid="uid://bfe0j2f5t8ksy" path="res://Textures/T_Noise_001R.png" id="14_2w5on"]
+[ext_resource type="ArrayMesh" uid="uid://p7vd7d241lgg" path="res://Models/smoke_explosion cloud.obj" id="15_346fj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
 content_margin_left = 0.0
@@ -55,10 +58,36 @@ albedo_texture = ExtResource("7_50glp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vy5pj"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sclb"]
+render_priority = 0
+shader = ExtResource("13_erwvk")
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/dissolve_texture = ExtResource("14_2w5on")
+
+[sub_resource type="Gradient" id="Gradient_sxkr1"]
+offsets = PackedFloat32Array(0.22131148, 1)
+colors = PackedColorArray(1, 0.3, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p0o7w"]
+gradient = SubResource("Gradient_sxkr1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fq0cl"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+color = Color(7.464185, 2.0475209, 2.0475209, 1)
+color_ramp = SubResource("GradientTexture1D_p0o7w")
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_grg3l"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vy5pj"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
+
+[sub_resource type="Environment" id="Environment_erwvk"]
+volumetric_fog_enabled = true
 
 [node name="Node3D" type="Node3D" unique_id=99090446]
 
@@ -445,6 +474,16 @@ physics_material_override = SubResource("PhysicsMaterial_50glp")
 transform = Transform3D(2.0533156, 0, 0, 0, 2.0045197, 0, 0, 0, 2.0997036, 0, 0, 0)
 shape = SubResource("BoxShape3D_vy5pj")
 
+[node name="ExplosionVFX" type="GPUParticles3D" parent="SimpleCrate/StaticBody3D/CollisionShape3D" unique_id=1306087618]
+transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_0sclb")
+emitting = false
+amount = 54
+lifetime = 0.13
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_fq0cl")
+draw_pass_1 = ExtResource("15_346fj")
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=840630709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681952, -2.5)
 script = ExtResource("9_vy5pj")
@@ -470,3 +509,6 @@ size = Vector3(9.75, 0.5, 12.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=504781648]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1059403429]
+environment = SubResource("Environment_erwvk")

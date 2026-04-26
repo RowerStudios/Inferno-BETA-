@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bcy55idmjq3a5"]
+
+[ext_resource type="Texture2D" uid="uid://dg4mf4aws0co2" path="res://Models/woodcolor.webp" id="1_7tkr2"]
+[ext_resource type="ArrayMesh" uid="uid://2g4lo2b43ak" path="res://Models/SimpleCrate.obj" id="2_ack17"]
+[ext_resource type="Shader" uid="uid://6averdud7xpo" path="res://Shaders/explosion.tres" id="3_na7wc"]
+[ext_resource type="Texture2D" uid="uid://bfe0j2f5t8ksy" path="res://Textures/T_Noise_001R.png" id="4_qt13p"]
+[ext_resource type="ArrayMesh" uid="uid://p7vd7d241lgg" path="res://Models/smoke_explosion cloud.obj" id="5_8vxdr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmxlf"]
+albedo_texture = ExtResource("1_7tkr2")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_50glp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vy5pj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sclb"]
+render_priority = 0
+shader = ExtResource("3_na7wc")
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/dissolve_texture = ExtResource("4_qt13p")
+
+[sub_resource type="Gradient" id="Gradient_sxkr1"]
+offsets = PackedFloat32Array(0.22131148, 1)
+colors = PackedColorArray(1, 0.3, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p0o7w"]
+gradient = SubResource("Gradient_sxkr1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fq0cl"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+color = Color(7.464185, 2.0475209, 2.0475209, 1)
+color_ramp = SubResource("GradientTexture1D_p0o7w")
+
+[node name="SimpleCrate" type="MeshInstance3D" unique_id=1929138224]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_bmxlf")
+mesh = ExtResource("2_ack17")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=978771265]
+physics_material_override = SubResource("PhysicsMaterial_50glp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1300222376]
+transform = Transform3D(2.0533156, 0, 0, 0, 2.0045197, 0, 0, 0, 2.0997036, 0, 0, 0)
+shape = SubResource("BoxShape3D_vy5pj")
+
+[node name="ExplosionVFX" type="GPUParticles3D" parent="StaticBody3D/CollisionShape3D" unique_id=1075134490]
+transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_0sclb")
+emitting = false
+amount = 54
+lifetime = 0.13
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_fq0cl")
+draw_pass_1 = ExtResource("5_8vxdr")

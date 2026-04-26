@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dio7xcfydoe0q"]
+
+[ext_resource type="Script" uid="uid://76hfudjog4vy" path="res://Scripts/pause.gd" id="1_rsoxr"]
+[ext_resource type="FontFile" uid="uid://obarq1venu61" path="res://Fonts/Audiowide-Regular.ttf" id="2_qndtx"]
+[ext_resource type="StyleBox" uid="uid://1ck048d6cmb6" path="res://Styles/corner.tres" id="3_jagrg"]
+[ext_resource type="Script" uid="uid://buwren8qfaqc" path="res://Scripts/tween.gd" id="4_d2hsj"]
+[ext_resource type="Script" uid="uid://60buphaehojg" path="res://Scripts/no.gd" id="4_qndtx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p5hy"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[node name="Confirm" type="Control" unique_id=1738016269]
+layout_mode = 3
+anchor_left = 0.004
+anchor_top = 0.012
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.39199972
+offset_top = 0.22399998
+offset_right = 7.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rsoxr")
+
+[node name="Panel" type="Panel" parent="." unique_id=2035730317]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062000003
+anchor_top = 0.31300002
+anchor_right = 0.91700006
+anchor_bottom = 0.64000005
+offset_left = 0.45199585
+offset_top = -0.007019043
+offset_right = -0.21801758
+offset_bottom = 0.039978027
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1p5hy")
+
+[node name="ah" type="Label" parent="Panel" unique_id=2004535446]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.809
+anchor_right = 0.99200004
+anchor_bottom = 0.91800004
+offset_left = 4.0
+offset_top = -166.08102
+offset_right = 5.9279785
+offset_bottom = -80.862015
+theme_override_fonts/font = ExtResource("2_qndtx")
+theme_override_font_sizes/font_size = 30
+text = "Are you sure? You want to exit this amazing game?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="No" type="Button" parent="Panel" unique_id=1408305388]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.62200004
+anchor_right = 0.202
+anchor_bottom = 0.87100005
+offset_left = 0.37800026
+offset_top = 0.0019989014
+offset_right = -0.17201233
+offset_bottom = -0.039016724
+theme_override_fonts/font = ExtResource("2_qndtx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_jagrg")
+text = "No"
+script = ExtResource("4_qndtx")
+
+[node name="Yes" type="Button" parent="Panel" unique_id=1877722606]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.78400004
+anchor_top = 0.60800004
+anchor_right = 0.95800006
+anchor_bottom = 0.85600007
+offset_left = -0.024047852
+offset_top = -0.072006226
+offset_right = 0.41192627
+offset_bottom = 0.09599304
+theme_override_fonts/font = ExtResource("2_qndtx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_jagrg")
+text = "Yes"
+script = ExtResource("4_d2hsj")

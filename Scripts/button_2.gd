@@ -1,21 +1,20 @@
 extends Button
 
+@onready var node = $"../.."
+@onready var settings = $"../../../Settings"
 @onready var bck_vector = pivot_offset
 @onready var bck_offset2 = pivot_offset_ratio
-@onready var panel = get_node("/root/Node3D/Control/Panel") 
-@onready var sound = $"../../../AudioStreamPlayer3D"
 @onready var hover = $"../../Hover"
 @onready var click = $"../../Click"
 @onready var exit = $"../../exit"
-@export var sfx_hover = preload("res://Sounds/UI/hover.ogg") 
+@onready var panel = get_node("/root/Node3D/Control/Panel") 
+@onready var sound = $"../../../AudioStreamPlayer3D"
 @onready var control = get_node("/root/Node3D/Control") 
 signal game_started
 
 func _play():
-	control.visible = false	
-	sound.playing = false
-	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	game_started.emit()
+	node.visible = false
+	settings.visible = true
 
 func _ready() -> void:
 	var center_pivot = Vector2(size.x / 2, size.y / 2)

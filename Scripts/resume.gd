@@ -1,10 +1,10 @@
 extends Button
 @onready var node = $"../../../.."
-@onready var settings = $"../../../../../Settings"
 func _ready() -> void:
 	pressed.connect(_resume)
 	
 func _resume():
 	print("game resumed")
 	node.visible = false
-	settings.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

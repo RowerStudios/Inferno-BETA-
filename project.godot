@@ -27,7 +27,7 @@ Discord_tick="*uid://crpm5uovok2xn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotTogether/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotTogether/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [filesystem]
 
@@ -73,6 +73,5 @@ sprint={
 
 [rendering]
 
-rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

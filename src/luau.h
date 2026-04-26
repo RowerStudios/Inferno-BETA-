@@ -1,0 +1,32 @@
+#pragma once
+
+#include <godot_cpp/classes/object.hpp>
+#include <godot_cpp/core/binder_common.hpp>
+#include <lua.h>
+
+namespace gdluau
+{
+    using namespace godot;
+
+    class LuaCompileOptions;
+
+    class Luau : public Object
+    {
+        GDCLASS(Luau, Object)
+
+    private:
+        static void _bind_methods();
+
+    public:
+        static PackedByteArray compile(const String &p_source_code, const LuaCompileOptions *p_options = nullptr);
+        static int upvalue_index(int p_upvalue);
+        static bool is_pseudo(int p_index);
+        static double clock();
+    };
+
+} // namespace gdluau
+
+VARIANT_ENUM_CAST(lua_Status);
+VARIANT_ENUM_CAST(lua_CoStatus);
+VARIANT_ENUM_CAST(lua_Type);
+VARIANT_ENUM_CAST(lua_GCOp);

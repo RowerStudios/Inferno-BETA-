@@ -15,6 +15,14 @@ run/main_scene="uid://5ma0tablnthg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Discord_tick="*uid://crpm5uovok2xn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/discord-game-sdk-godot/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false

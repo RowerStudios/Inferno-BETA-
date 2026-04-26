@@ -1,0 +1,220 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_DEBUG_POSTFIX": ".debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "BUILD_TESTING": "ON"
+      }
+    },
+    {
+      "name": "windows-x86_64",
+      "hidden": true,
+      "inherits": [
+        "default"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "generator": "Visual Studio 17 2022",
+      "$comment": "Output dir set to prevent MSVC from adding Debug/Release subdirectories",
+      "cacheVariables": {
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/build/bin",
+        "LIBRARY_SUFFIX": "dll",
+        "WARNING_FLAGS": "/Wall;/WX;/permissive-;/wd4061;/wd4100;/wd4127;/wd4201;/wd4244;/wd4267;/wd4365;/wd4514;/wd4625;/wd4626;/wd4668;/wd4710;/wd4711;/wd4800;/wd4820;/wd4946;/wd5039;/wd5026;/wd5027;/wd5045;/wd5219;/wd5267"
+      }
+    },
+    {
+      "name": "windows-x86_64-debug",
+      "inherits": [
+        "windows-x86_64"
+      ],
+      "$comment": "Output dir set to prevent MSVC from adding Debug/Release subdirectories",
+      "cacheVariables": {
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG": "${sourceDir}/build/bin",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebugDLL",
+        "COPY_PDB_FILE": "ON"
+      }
+    },
+    {
+      "name": "windows-x86_64-release",
+      "inherits": [
+        "windows-x86_64"
+      ],
+      "$comment": "Output dir set to prevent MSVC from adding Debug/Release subdirectories",
+      "cacheVariables": {
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE": "${sourceDir}/build/bin",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",
+        "COPY_PDB_FILE": "OFF"
+      }
+    },
+    {
+      "name": "linux-x86_64",
+      "hidden": true,
+      "inherits": [
+        "default"
+      ],
+      "$comment": "Forcing PIC on when compiling static library dependencies",
+      "cacheVariables": {
+        "CMAKE_POSITION_INDEPENDENT_CODE": "TRUE",
+        "LIBRARY_SUFFIX": "so",
+        "WARNING_FLAGS": "-Wall;-Wextra;-Werror;-Wno-shadow;-Wnon-virtual-dtor;-Wno-cast-align;-Wunused;-Woverloaded-virtual;-Wformat=2;-Wimplicit-fallthrough;-Wno-unused-parameter;-Wno-unused-but-set-parameter;-Wno-switch-enum;-Wno-padded;-Wno-conversion;-Wno-sign-conversion;-Wno-missing-field-initializers"
+      }
+    },
+    {
+      "name": "linux-x86_64-debug",
+      "inherits": [
+        "linux-x86_64"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-x86_64-release",
+      "inherits": [
+        "linux-x86_64"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "macos-arm64",
+      "hidden": true,
+      "inherits": [
+        "default"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "$comment": "Forcing PIC on when compiling static library dependencies",
+      "cacheVariables": {
+        "CMAKE_POSITION_INDEPENDENT_CODE": "TRUE",
+        "LIBRARY_SUFFIX": "dylib",
+        "WARNING_FLAGS": "-Wall;-Wextra;-Werror;-Wno-shadow;-Wnon-virtual-dtor;-Wno-cast-align;-Wunused;-Woverloaded-virtual;-Wformat=2;-Wimplicit-fallthrough;-Wno-unused-parameter;-Wno-unused-but-set-parameter;-Wno-switch-enum;-Wno-padded;-Wno-conversion;-Wno-sign-conversion;-Wno-missing-field-initializers"
+      }
+    },
+    {
+      "name": "macos-arm64-debug",
+      "inherits": [
+        "macos-arm64"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "macos-arm64-release",
+      "inherits": [
+        "macos-arm64"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-x86_64-debug",
+      "configurePreset": "windows-x86_64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-x86_64-release",
+      "configurePreset": "windows-x86_64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "linux-x86_64-debug",
+      "configurePreset": "linux-x86_64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "linux-x86_64-release",
+      "configurePreset": "linux-x86_64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "macos-arm64-debug",
+      "configurePreset": "macos-arm64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "macos-arm64-release",
+      "configurePreset": "macos-arm64-release",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "verbose"
+      }
+    },
+    {
+      "name": "windows-x86_64-debug",
+      "inherits": [
+        "default"
+      ],
+      "configurePreset": "windows-x86_64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-x86_64-release",
+      "inherits": [
+        "default"
+      ],
+      "configurePreset": "windows-x86_64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "linux-x86_64-debug",
+      "inherits": [
+        "default"
+      ],
+      "configurePreset": "linux-x86_64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "linux-x86_64-release",
+      "inherits": [
+        "default"
+      ],
+      "configurePreset": "linux-x86_64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "macos-arm64-debug",
+      "inherits": [
+        "default"
+      ],
+      "configurePreset": "macos-arm64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "macos-arm64-release",
+      "inherits": [
+        "default"
+      ],
+      "configurePreset": "macos-arm64-release",
+      "configuration": "Release"
+    }
+  ]
+}

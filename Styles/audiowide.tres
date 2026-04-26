@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://crns5dwy2llug"]
+
+[ext_resource type="FontFile" uid="uid://obarq1venu61" path="res://Fonts/Audiowide-Regular.ttf" id="1_64lib"]
+
+[resource]
+font = ExtResource("1_64lib")
+font_size = 40

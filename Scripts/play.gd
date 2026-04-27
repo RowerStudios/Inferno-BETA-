@@ -12,6 +12,11 @@ extends Button
 signal game_started
 
 func _play():
+	DiscordRPC.details = "In Game : " + str(GameData.level)
+	DiscordRPC.state =  "Tester"
+	#DiscordRPC.details = "In Game : " + str(GameData.level)
+	#DiscordRPC.state =  str(GameData.secrets) + str("/") + str(GameData.total_secrets)
+	DiscordRPC.refresh()
 	control.visible = false	
 	panel.visible = false
 	sound.playing = false

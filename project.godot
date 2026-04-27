@@ -30,10 +30,6 @@ DiscordRPCLoader="*uid://c7vkve6u88hho"
 GameData="*uid://cvi71rdk88g8g"
 InputManager="*uid://s552jrg7p6uw"
 
-[editor]
-
-version_control/autoload_on_startup=true
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")

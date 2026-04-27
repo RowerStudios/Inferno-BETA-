@@ -2,12 +2,23 @@ extends CharacterBody3D
 
 var t_bob = 0.0
 var is_playing: bool = false
+var is_shooting: bool = false
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var right_arm = $Head/Camera3D/Main/RightArm
 @onready var gun = right_arm.get_node("weapon")
 @onready var animation = gun.get_node("Walk")
+@onready var gun_main = gun.get_node("Cube")
+@onready var gun_light = gun_main.get_node("OmniLight3D")
+
+func _shoot():
+	is_shooting = true
+	while is_shooting:
+		gun_light.visible = true
+		await get_tree().create_timer(randf_range(0.07, 0.09)).timeout
+		gun_light.visible = false
+		await get_tree().create_timer(randf_range(0.07, 0.09)).timeout
 
 func _ready():
 	var sender_node = get_node("/root/Node3D/Control/Panel/Button")
@@ -18,6 +29,11 @@ func playing():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):
+	if is_playing and Input.is_action_just_pressed("Shoot"):
+		_shoot()
+	if is_playing and Input.is_action_just_released("Shoot"):
+		is_shooting = false
+		gun_light.visible = false
 	if is_playing and event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * PlayerData.sensitivity)
 		camera.rotate_x(-event.relative.y * PlayerData.sensitivity)
@@ -26,6 +42,7 @@ func _unhandled_input(event):
 func _physics_process(delta: float) -> void:
 	if not is_playing:
 		return
+
 	var SPEED = PlayerData.base_speed
 
 	if not is_on_floor():
@@ -57,7 +74,6 @@ func _physics_process(delta: float) -> void:
 
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = _headbob(t_bob)
-
 	move_and_slide()
 
 func _headbob(time) -> Vector3:

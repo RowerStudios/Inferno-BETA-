@@ -29,6 +29,9 @@ tracks/1/keys = {
 "values": [Vector3(0, -0.33427694, 0.5199406)]
 }
 
+[sub_resource type="Animation" id="Animation_r6fpo"]
+resource_name = "Shoot"
+
 [sub_resource type="Animation" id="Animation_rf2kv"]
 resource_name = "walk"
 length = 1.1666666
@@ -61,10 +64,18 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r6fpo"]
 _data = {
 &"RESET": SubResource("Animation_6n4ow"),
+&"Shoot": SubResource("Animation_r6fpo"),
 &"walk": SubResource("Animation_rf2kv")
 }
 
 [node name="m4a1" unique_id=689531993 instance=ExtResource("1_6n4ow")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Cube" parent_id_path=PackedInt32Array(2040922014) index="0" unique_id=665442723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65822184, -7.8100333)
+visible = false
+light_color = Color(1, 1, 0, 1)
+shadow_enabled = true
+omni_range = 4.781
 
 [node name="Walk" type="AnimationPlayer" parent="." index="2" unique_id=1412884735]
 libraries/ = SubResource("AnimationLibrary_r6fpo")

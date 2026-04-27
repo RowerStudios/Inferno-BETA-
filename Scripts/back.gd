@@ -5,12 +5,25 @@ extends Button
 @onready var panel = $"../../.."
 @onready var Main = $"../../../../Control"
 @onready var sound = $"../../../../AudioStreamPlayer3D"
-signal game_started
+@onready var pause = $"/root/Node3D/Pause"
+@onready var hover = $"/root/Node3D/Hover"
+@onready var click = $"/root/Node3D/Click"
+
 
 func _play():
-	sound.bus = "Master"
-	Main.visible = true
-	panel.visible = false
+	if Main.get_node("Panel").visible:
+		sound.bus = "Master"
+		Main.visible = true
+		panel.visible = false
+	elif Main.visible == false:
+		panel.visible = false
+		pause.visible = true
+		
+	
+func _input(event: InputEvent) -> void:
+	if panel.visible == true:
+		if event.is_action_pressed("ui_cancel"):
+			_press()
 
 func _ready() -> void:
 	var center_pivot = Vector2(size.x / 2, size.y / 2)
@@ -24,6 +37,7 @@ func _ready() -> void:
 	mouse_exited.connect(_exit)
 
 func _press() -> void:
+	click.play()
 	print("begin")
 	var new_tween = create_tween()
 	new_tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
@@ -35,6 +49,7 @@ func _press_end() -> void:
 	new_tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.1)
 
 func _hover() -> void:
+	hover.play()
 	print("hover")
 	var new_tween = create_tween()
 	new_tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.1)

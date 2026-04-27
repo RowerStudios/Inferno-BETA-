@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dg4mf4aws0co2"
 path.s3tc="res://.godot/imported/woodcolor.webp-7b849fcee3b0aa953e8c7f11e77c1390.s3tc.ctex"
+path.etc2="res://.godot/imported/woodcolor.webp-7b849fcee3b0aa953e8c7f11e77c1390.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Models/woodcolor.webp"
-dest_files=["res://.godot/imported/woodcolor.webp-7b849fcee3b0aa953e8c7f11e77c1390.s3tc.ctex"]
+dest_files=["res://.godot/imported/woodcolor.webp-7b849fcee3b0aa953e8c7f11e77c1390.s3tc.ctex", "res://.godot/imported/woodcolor.webp-7b849fcee3b0aa953e8c7f11e77c1390.etc2.ctex"]
 
 [params]
 

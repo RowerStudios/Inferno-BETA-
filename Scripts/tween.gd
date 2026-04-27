@@ -2,7 +2,8 @@ extends Button
 
 @onready var bck_vector = pivot_offset
 @onready var bck_offset2 = pivot_offset_ratio
-
+@onready var hover = $"/root/Node3D/Hover"
+@onready var click = $"/root/Node3D/Click"
 func _ready() -> void:
 	var center_pivot = Vector2(size.x / 2, size.y / 2)
 	pivot_offset = center_pivot
@@ -15,6 +16,7 @@ func _ready() -> void:
 	mouse_exited.connect(_exit)
 
 func _press() -> void:
+	click.play()
 	get_tree().quit(1)
 	print("begin")
 	var new_tween = create_tween()
@@ -27,6 +29,7 @@ func _press_end() -> void:
 	new_tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.1)
 
 func _hover() -> void:
+	hover.play()
 	print("hover")
 	var new_tween = create_tween()
 	new_tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.1)

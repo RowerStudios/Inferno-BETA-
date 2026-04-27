@@ -4,6 +4,9 @@ extends Button
 @onready var bck_offset2 = pivot_offset_ratio
 @onready var root_node = $"/root/Node3D"
 @onready var mainmenu = $"/root/Node3D/Control"
+@onready var pause = $"/root/Node3D/Pause"
+@onready var hover = $"/root/Node3D/Hover"
+@onready var click = $"/root/Node3D/Click"
 func _ready() -> void:
 	var center_pivot = Vector2(size.x / 2, size.y / 2)
 	pivot_offset = center_pivot
@@ -16,6 +19,7 @@ func _ready() -> void:
 	mouse_exited.connect(_exit)
 
 func _press() -> void:
+	click.play()
 	print("begin")
 	var new_tween = create_tween()
 	new_tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
@@ -32,6 +36,11 @@ func _press() -> void:
 				confirm_dialog.queue_free()
 				print("Confirm dialog removed")
 	else:
+		var confirm_dialog = root_node.get_node("Confirm")
+		root_node.remove_child(confirm_dialog)
+		var confirm = $"../.."
+		confirm.remove_child(self)
+		pause.visible = true
 		print("wip")
 	
 
@@ -42,6 +51,7 @@ func _press_end() -> void:
 
 func _hover() -> void:
 	print("hover")
+	hover.play()
 	var new_tween = create_tween()
 	new_tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.1)
 

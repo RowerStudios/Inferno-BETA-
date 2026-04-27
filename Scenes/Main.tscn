@@ -15,10 +15,18 @@
 [ext_resource type="Script" uid="uid://bt5rfujxt87t2" path="res://Scripts/panel.gd" id="9_grg3l"]
 [ext_resource type="AudioStream" uid="uid://blbtf867lxibe" path="res://Sounds/UI/press.ogg" id="9_sxkr1"]
 [ext_resource type="Script" uid="uid://dalthvvweypcf" path="res://Scripts/player.gd" id="9_vy5pj"]
+[ext_resource type="Script" uid="uid://dyyo53kfocx7e" path="res://Scripts/general_sfx.gd" id="13_aht7i"]
+[ext_resource type="Script" uid="uid://dyrik68xmrarf" path="res://Scripts/bobbing.gd" id="14_3tgeq"]
+[ext_resource type="Script" uid="uid://c4sek47pe1wne" path="res://Scripts/bloom.gd" id="14_fq0cl"]
 [ext_resource type="Script" uid="uid://yxisp77hfypl" path="res://Scripts/resume.gd" id="15_erwvk"]
+[ext_resource type="Script" uid="uid://bn1axghlu1uu" path="res://Scripts/shadows.gd" id="15_hwpts"]
+[ext_resource type="Script" uid="uid://maq6v71yn1b5" path="res://Scripts/yetanother.gd" id="16_5jffn"]
 [ext_resource type="Script" uid="uid://b4smbcajcirnm" path="res://Scripts/exit.gd" id="16_erwvk"]
+[ext_resource type="Script" uid="uid://d2gmriwpkuu3j" path="res://Scripts/efx.gd" id="16_jyqft"]
 [ext_resource type="AudioStream" uid="uid://dt6k51ui1xvjk" path="res://Sounds/Doom_eternal_lob.mp3" id="17_2w5on"]
+[ext_resource type="Texture2D" uid="uid://p1b60wqcuwge" path="res://icon.png" id="18_c4ay3"]
 [ext_resource type="Script" uid="uid://76hfudjog4vy" path="res://Scripts/pause.gd" id="19_0sclb"]
+[ext_resource type="Shader" uid="uid://dqxw1kstclpgi" path="res://Shaders/Main.gdshader" id="20_sxkr1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
 content_margin_left = 0.0
@@ -60,12 +68,21 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="LabelSettings" id="LabelSettings_c4ay3"]
+font = ExtResource("2_pbw6q")
+font_size = 35
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_grg3l"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vy5pj"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
 
 [sub_resource type="Environment" id="Environment_erwvk"]
+glow_enabled = true
+glow_intensity = 1.0
+glow_bloom = 0.25
+fog_enabled = true
+fog_light_color = Color(0.14017183, 0.15623155, 0.18122098, 1)
 volumetric_fog_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p5hy"]
@@ -79,6 +96,15 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0sclb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fq0cl"]
+render_priority = 0
+shader = ExtResource("20_sxkr1")
+shader_parameter/bloom_threshold = 1.0
+shader_parameter/bloom_intensity = 2.0
+shader_parameter/bloom_spread = 2.0
 
 [node name="Node3D" type="Node3D" unique_id=99090446]
 script = ExtResource("1_346fj")
@@ -129,14 +155,13 @@ script = ExtResource("3_v1gob")
 [node name="Button" type="Button" parent="Control/Panel" unique_id=178372036]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.123
-anchor_top = 0.43600002
-anchor_right = 0.33
-anchor_bottom = 0.53000003
-offset_left = 0.16499329
-offset_top = 0.65197754
-offset_right = 1.1149902
-offset_bottom = 0.115997314
+anchor_left = 0.1
+anchor_top = 0.43400002
+anchor_right = 0.30800003
+anchor_bottom = 0.527
+offset_top = -0.006011963
+offset_right = -0.22003174
+offset_bottom = 0.11703491
 theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
@@ -167,14 +192,15 @@ script = ExtResource("7_2w5on")
 [node name="Warn" type="Label" parent="Control/Panel" unique_id=1168653755]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.23
-anchor_top = 1.019
-anchor_right = 0.76400006
-anchor_bottom = 1.4030001
-offset_left = -263.1
-offset_top = -100.52106
-offset_right = 280.11993
-offset_bottom = -269.5771
+anchor_left = 0.21100001
+anchor_top = 0.87900007
+anchor_right = 0.79200006
+anchor_bottom = 0.9620001
+offset_left = 0.12998962
+offset_top = -0.26104736
+offset_right = 0.35992432
+offset_bottom = 0.041931152
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fos0i")
@@ -315,11 +341,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="Settings/Main" unique_id=1483370312]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.097
 offset_left = 2.0
 offset_top = 5.0
-offset_right = 1153.0
-offset_bottom = 63.0
+offset_bottom = 0.24099731
 text = "Settings:"
 label_settings = ExtResource("7_4kpch")
 horizontal_alignment = 1
@@ -378,6 +406,7 @@ theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
 text = "General      >"
+script = ExtResource("13_aht7i")
 
 [node name="Graphical" type="Button" parent="Settings/Main/Scroll/ScrollContainer/VBoxContainer" unique_id=1560422627]
 layout_mode = 2
@@ -385,6 +414,7 @@ theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
 text = "Graphics    >"
+script = ExtResource("13_aht7i")
 
 [node name="Controls" type="Button" parent="Settings/Main/Scroll/ScrollContainer/VBoxContainer" unique_id=1412644319]
 layout_mode = 2
@@ -392,6 +422,15 @@ theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
 text = "Controls    >"
+script = ExtResource("13_aht7i")
+
+[node name="About" type="Button" parent="Settings/Main/Scroll/ScrollContainer/VBoxContainer" unique_id=1382694408]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("5_pbw6q")
+text = "About        >"
+script = ExtResource("13_aht7i")
 
 [node name="Panel" type="Panel" parent="Settings/Main" unique_id=30333588]
 layout_mode = 1
@@ -422,14 +461,35 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Button" type="Button" parent="Settings/Main/Panel/General/vbox" unique_id=360226712]
+[node name="Bobbing" type="Button" parent="Settings/Main/Panel/General/vbox" unique_id=350000972]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
 theme_override_styles/pressed = ExtResource("5_pbw6q")
 theme_override_styles/hover = ExtResource("5_pbw6q")
-text = "General"
+text = "  Camera Bobbing :"
+alignment = 0
+script = ExtResource("14_3tgeq")
+
+[node name="Button" type="Button" parent="Settings/Main/Panel/General/vbox/Bobbing" unique_id=1892205023]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.115
+anchor_right = 0.97
+anchor_bottom = 0.86500007
+offset_left = -0.2000122
+offset_top = 0.01999998
+offset_right = -0.3300171
+offset_bottom = 0.019996643
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "Enabled"
+script = ExtResource("16_5jffn")
 
 [node name="Graphical" type="ScrollContainer" parent="Settings/Main/Panel" unique_id=518999927]
 visible = false
@@ -448,14 +508,95 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Button" type="Button" parent="Settings/Main/Panel/Graphical/vbox" unique_id=1700812825]
+[node name="Bloom" type="Button" parent="Settings/Main/Panel/Graphical/vbox" unique_id=1700812825]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pbw6q")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
 theme_override_styles/pressed = ExtResource("5_pbw6q")
 theme_override_styles/hover = ExtResource("5_pbw6q")
-text = "Graphical"
+text = "  Bloom :"
+alignment = 0
+script = ExtResource("14_fq0cl")
+
+[node name="Button" type="Button" parent="Settings/Main/Panel/Graphical/vbox/Bloom" unique_id=450996262]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.115
+anchor_right = 0.97
+anchor_bottom = 0.86500007
+offset_left = -0.2000122
+offset_top = 0.01999998
+offset_right = -0.3300171
+offset_bottom = 0.019996643
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "Enabled"
+script = ExtResource("16_5jffn")
+
+[node name="Shadows" type="Button" parent="Settings/Main/Panel/Graphical/vbox" unique_id=856045522]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "  Shadows :"
+alignment = 0
+script = ExtResource("15_hwpts")
+
+[node name="Button" type="Button" parent="Settings/Main/Panel/Graphical/vbox/Shadows" unique_id=1423075183]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.115
+anchor_right = 0.97
+anchor_bottom = 0.86500007
+offset_left = -0.2000122
+offset_top = 0.01999998
+offset_right = -0.3300171
+offset_bottom = 0.019996643
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "Enabled"
+script = ExtResource("16_5jffn")
+
+[node name="EFX" type="Button" parent="Settings/Main/Panel/Graphical/vbox" unique_id=1924438367]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "  Environment FX :"
+alignment = 0
+script = ExtResource("16_jyqft")
+
+[node name="Button" type="Button" parent="Settings/Main/Panel/Graphical/vbox/EFX" unique_id=1333046128]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.115
+anchor_right = 0.97
+anchor_bottom = 0.86500007
+offset_left = -0.2000122
+offset_top = 0.01999998
+offset_right = -0.3300171
+offset_bottom = 0.019996643
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "Enabled"
+script = ExtResource("16_5jffn")
 
 [node name="Control" type="ScrollContainer" parent="Settings/Main/Panel" unique_id=679595157]
 visible = false
@@ -481,7 +622,159 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("5_pbw6q")
 theme_override_styles/pressed = ExtResource("5_pbw6q")
 theme_override_styles/hover = ExtResource("5_pbw6q")
-text = "Controls"
+text = "WIP"
+
+[node name="About" type="ScrollContainer" parent="Settings/Main/Panel" unique_id=1796074187]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0070001
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = -14.268036
+offset_bottom = -12.0
+
+[node name="vbox" type="VBoxContainer" parent="Settings/Main/Panel/About" unique_id=1195552837]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Settings/Main/Panel/About/vbox" unique_id=1900746739]
+layout_mode = 2
+
+[node name="About2" type="Panel" parent="Settings/Main/Panel/About/vbox/Panel" unique_id=1832174550]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = -262.0
+offset_bottom = 268.0
+grow_horizontal = 2
+
+[node name="Icon" type="Sprite2D" parent="Settings/Main/Panel/About/vbox/Panel/About2" unique_id=1563471713]
+position = Vector2(81, 84)
+scale = Vector2(0.27699998, 0.27699998)
+texture = ExtResource("18_c4ay3")
+
+[node name="Title" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2" unique_id=514639559]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21300001
+anchor_top = 0.11100001
+anchor_right = 1.016
+anchor_bottom = 0.22000001
+offset_left = -13.057007
+offset_top = -7.8300056
+offset_right = -12.624023
+offset_bottom = -7.8180237
+text = "A project made with passion!"
+label_settings = SubResource("LabelSettings_c4ay3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2" unique_id=608958331]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0050000004
+anchor_top = 0.476
+anchor_right = 0.38200003
+anchor_bottom = 0.58500004
+offset_left = 3.0549884
+offset_top = -77.27998
+offset_right = 4.6019897
+offset_bottom = -77.268005
+text = "Contributors:"
+label_settings = ExtResource("7_4kpch")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2/Title2" unique_id=1372112621]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 61.0
+offset_right = 424.0
+offset_bottom = 119.0
+text = "Rower"
+label_settings = ExtResource("7_4kpch")
+vertical_alignment = 1
+
+[node name="Title3" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2/Title2" unique_id=231501249]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 119.0
+offset_right = 424.0
+offset_bottom = 177.0
+text = "1UpJohnson"
+label_settings = ExtResource("7_4kpch")
+vertical_alignment = 1
+
+[node name="Title4" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2/Title2" unique_id=1290748137]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 174.0
+offset_right = 426.0
+offset_bottom = 232.0
+text = "ayo_breme"
+label_settings = ExtResource("7_4kpch")
+vertical_alignment = 1
+
+[node name="Title5" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2/Title2" unique_id=2101455983]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 52.0
+offset_right = 747.0
+offset_bottom = 110.0
+text = "animator_09"
+label_settings = ExtResource("7_4kpch")
+vertical_alignment = 1
+
+[node name="Title6" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2/Title2" unique_id=1515139329]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 110.0
+offset_right = 746.0
+offset_bottom = 168.0
+text = "kai_fr"
+label_settings = ExtResource("7_4kpch")
+vertical_alignment = 1
+
+[node name="Title7" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2/Title2" unique_id=1912392284]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 166.0
+offset_right = 746.0
+offset_bottom = 224.0
+text = "potateguylol"
+label_settings = ExtResource("7_4kpch")
+vertical_alignment = 1
+
+[node name="Title3" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2" unique_id=65053522]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0050000004
+anchor_top = 0.476
+anchor_right = 0.38200003
+anchor_bottom = 0.58500004
+offset_left = -1.9450116
+offset_top = 162.72
+offset_right = -118.398026
+offset_bottom = 156.94998
+text = "Tester:"
+label_settings = ExtResource("7_4kpch")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title4" type="Label" parent="Settings/Main/Panel/About/vbox/Panel/About2/Title3" unique_id=1744779882]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 54.0
+offset_right = 439.0
+offset_bottom = 106.0
+text = "l0rdtr4n"
+label_settings = ExtResource("7_4kpch")
+vertical_alignment = 1
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=840630709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681952, -2.5)
@@ -502,7 +795,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 current = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2002286932]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.25, -2.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.25, -0.29351044)
 use_collision = true
 size = Vector3(9.75, 0.5, 12.5)
 
@@ -617,3 +910,40 @@ theme_override_font_sizes/font_size = 30
 text = "INFERNO"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="Pause" unique_id=417125936]
+stream = ExtResource("8_0sclb")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="Pause" unique_id=947694770]
+stream = ExtResource("9_sxkr1")
+
+[node name="Exit" type="AudioStreamPlayer2D" parent="Pause" unique_id=1004467916]
+stream = ExtResource("9_sxkr1")
+
+[node name="Shadow Test" type="MeshInstance3D" parent="." unique_id=1202963520]
+transform = Transform3D(-2.1713298e-08, 0, 0.397097, 0, 0.08771099, 0, -0.49674237, 0, -1.735766e-08, 2.5978758, 0.11886072, 0.056993365)
+mesh = SubResource("CylinderMesh_0sclb")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Shadow Test" unique_id=129721138 groups=["game_lights"]]
+transform = Transform3D(2.013116, 0, 4.2632564e-14, 0, 11.401079, 0, -6.3948846e-14, 0, 2.5182765, -1.7136335e-07, 1.1734569, 4.9649324)
+light_indirect_energy = 1.792
+light_volumetric_fog_energy = 2.218
+light_specular = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 11.751
+spot_angle = 83.29
+
+[node name="Bloom Test" type="MeshInstance3D" parent="." unique_id=1712305669]
+transform = Transform3D(-2.1713298e-08, 0, 0.397097, 0, 0.08771099, 0, -0.49674237, 0, -1.735766e-08, 2.5978758, 0.11886072, -1.684207)
+mesh = SubResource("CylinderMesh_0sclb")
+surface_material_override/0 = SubResource("ShaderMaterial_fq0cl")
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="." unique_id=1455390115]
+stream = ExtResource("8_0sclb")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="." unique_id=1781941109]
+stream = ExtResource("9_sxkr1")
+
+[node name="Exit" type="AudioStreamPlayer2D" parent="." unique_id=1701122075]
+stream = ExtResource("9_sxkr1")

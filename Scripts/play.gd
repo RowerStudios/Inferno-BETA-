@@ -13,6 +13,7 @@ signal game_started
 
 func _play():
 	control.visible = false	
+	panel.visible = false
 	sound.playing = false
 	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	game_started.emit()

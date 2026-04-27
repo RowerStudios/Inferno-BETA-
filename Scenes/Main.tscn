@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://p1b60wqcuwge" path="res://icon.png" id="18_c4ay3"]
 [ext_resource type="Script" uid="uid://76hfudjog4vy" path="res://Scripts/pause.gd" id="19_0sclb"]
 [ext_resource type="Shader" uid="uid://dqxw1kstclpgi" path="res://Shaders/Main.gdshader" id="20_sxkr1"]
+[ext_resource type="PackedScene" uid="uid://ceehn6rqbh67w" path="res://Scenes/m_4a_1.tscn" id="22_kpo4j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
 content_margin_left = 0.0
@@ -118,6 +119,7 @@ offset_right = -2.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="Control" unique_id=997205828]
 layout_mode = 1
@@ -231,6 +233,7 @@ offset_top = -0.2720337
 offset_right = -3.7600098
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("6_v1gob")
 
 [node name="Chats" type="Panel" parent="Chat" unique_id=65439781]
@@ -330,6 +333,7 @@ offset_right = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Main" type="Panel" parent="Settings" unique_id=1080863209]
 layout_mode = 1
@@ -794,6 +798,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head" unique_id=584076566]
 current = true
 
+[node name="Main" type="Node3D" parent="CharacterBody3D/Head/Camera3D" unique_id=674454424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21648324, 0, 0)
+
+[node name="RightArm" type="Node3D" parent="CharacterBody3D/Head/Camera3D/Main" unique_id=196217352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22995958, 0, 0)
+
+[node name="weapon" parent="CharacterBody3D/Head/Camera3D/Main/RightArm" unique_id=689531993 instance=ExtResource("22_kpo4j")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.28011853, -0.1568588, -0.676358)
+
+[node name="LeftArm" type="Node3D" parent="CharacterBody3D/Head/Camera3D/Main" unique_id=223143158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28308752, 0, 0)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2002286932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.25, -0.29351044)
 use_collision = true
@@ -821,6 +837,7 @@ offset_right = 7.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("19_0sclb")
 
 [node name="Panel" type="Panel" parent="Pause" unique_id=750965910]

@@ -14,7 +14,7 @@ func _ready() -> void:
 'func _input(event: InputEvent) -> void:
 	if node.visible == true:
 		await get_tree().create_timer(1)
-		if Input.is_action_pressed("ui_cancel"):
+		if Input.is_action_pressed("escape"):
 			_resume()'
 
 func _press() -> void:

@@ -22,8 +22,9 @@ func _play():
 	
 func _input(event: InputEvent) -> void:
 	if panel.visible == true:
-		if event.is_action_pressed("ui_cancel"):
-			_press()
+		if event is InputEventKey and event.pressed and not event.echo:
+			if event.keycode == KEY_ESCAPE:
+				_press()
 
 func _ready() -> void:
 	var center_pivot = Vector2(size.x / 2, size.y / 2)

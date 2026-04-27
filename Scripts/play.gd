@@ -6,7 +6,7 @@ extends Button
 @onready var sound = $"../../../AudioStreamPlayer3D"
 @onready var hover = $"../../Hover"
 @onready var click = $"../../Click"
-@onready var exit = $"../../exit"
+
 @export var sfx_hover = preload("res://Sounds/UI/hover.ogg") 
 @onready var control = get_node("/root/Node3D/Control") 
 signal game_started

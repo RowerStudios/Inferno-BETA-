@@ -5,6 +5,9 @@ var is_playing: bool = false
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var right_arm = $Head/Camera3D/Main/RightArm
+@onready var gun = right_arm.get_node("weapon")
+@onready var animation = gun.get_node("Walk")
 
 func _ready():
 	var sender_node = get_node("/root/Node3D/Control/Panel/Button")
@@ -23,7 +26,6 @@ func _unhandled_input(event):
 func _physics_process(delta: float) -> void:
 	if not is_playing:
 		return
-
 	var SPEED = PlayerData.base_speed
 
 	if not is_on_floor():
@@ -44,6 +46,14 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	if direction and is_on_floor():
+		animation.speed_scale = 1.0
+		if animation.current_animation != "walk":
+			animation.play("walk")
+	else:
+		if animation.current_animation == "walk":
+			animation.speed_scale = 0.0
 
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = _headbob(t_bob)

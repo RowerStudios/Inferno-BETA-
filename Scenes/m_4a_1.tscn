@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ceehn6rqbh67w"]
+
+[ext_resource type="PackedScene" uid="uid://cj51dd420qkwh" path="res://Models/m4a1.glb" id="1_6n4ow"]
+
+[sub_resource type="Animation" id="Animation_6n4ow"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 3.4839048)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_001:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.33427694, 0.5199406)]
+}
+
+[sub_resource type="Animation" id="Animation_rf2kv"]
+resource_name = "walk"
+length = 1.1666666
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.6, 0.85, 1.11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 3.4839048), Vector3(0, 0.49266958, 2.7383022), Vector3(0, -0.044287443, 2.2657857), Vector3(0, 0.49266958, 2.7383022), Vector3(0, 0, 3.4839048)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_001:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.6, 0.85, 1.11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.33427694, 0.5199406), Vector3(0, 0.15839264, -0.225662), Vector3(0, -0.3785644, -0.6981785), Vector3(0, 0.15839264, -0.225662), Vector3(0, -0.33427694, 0.5199406)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6fpo"]
+_data = {
+&"RESET": SubResource("Animation_6n4ow"),
+&"walk": SubResource("Animation_rf2kv")
+}
+
+[node name="m4a1" unique_id=689531993 instance=ExtResource("1_6n4ow")]
+
+[node name="Walk" type="AnimationPlayer" parent="." index="2" unique_id=1412884735]
+libraries/ = SubResource("AnimationLibrary_r6fpo")
+autoplay = &"walk"

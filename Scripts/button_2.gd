@@ -6,7 +6,7 @@ extends Button
 @onready var bck_offset2 = pivot_offset_ratio
 @onready var hover = $"../../Hover"
 @onready var click = $"../../Click"
-@onready var exit = $"../../exit"
+
 @onready var panel = get_node("/root/Node3D/Control/Panel") 
 @onready var sound = $"../../../AudioStreamPlayer3D"
 @onready var control = get_node("/root/Node3D/Control") 

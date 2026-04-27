@@ -28,6 +28,7 @@ Discord_tick="*uid://crpm5uovok2xn"
 PlayerData="*uid://cqpspmpbv2lr7"
 DiscordRPCLoader="*uid://c7vkve6u88hho"
 GameData="*uid://cvi71rdk88g8g"
+InputManager="*uid://s552jrg7p6uw"
 
 [editor]
 

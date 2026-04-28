@@ -29,6 +29,8 @@ func _shoot():
 		await get_tree().create_timer(randf_range(0.07, 0.09)).timeout
 
 func _ready():
+	animation.stop()
+	animation.active = true
 	var sender_node = get_node("/root/Node3D/Control/Panel/Button")
 	sender_node.game_started.connect(playing)
 

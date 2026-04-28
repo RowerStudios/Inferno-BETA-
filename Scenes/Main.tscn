@@ -28,6 +28,8 @@
 [ext_resource type="Script" uid="uid://76hfudjog4vy" path="res://Scripts/pause.gd" id="19_0sclb"]
 [ext_resource type="Shader" uid="uid://dqxw1kstclpgi" path="res://Shaders/Main.gdshader" id="20_sxkr1"]
 [ext_resource type="PackedScene" uid="uid://ceehn6rqbh67w" path="res://Scenes/m_4a_1.tscn" id="22_kpo4j"]
+[ext_resource type="Script" uid="uid://d1xp20rrt04ge" path="res://Scripts/connection.gd" id="29_4n42c"]
+[ext_resource type="Script" uid="uid://bimnms8s3imk" path="res://Scripts/testt.gd" id="30_c5snn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
 content_margin_left = 0.0
@@ -112,6 +114,7 @@ shader_parameter/bloom_spread = 2.0
 script = ExtResource("1_346fj")
 
 [node name="Control" type="Control" parent="." unique_id=1877318150]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -781,41 +784,41 @@ text = "l0rdtr4n"
 label_settings = ExtResource("7_4kpch")
 vertical_alignment = 1
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=840630709]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=840630709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681952, -2.5)
 script = ExtResource("9_vy5pj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=107916190]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=107916190]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.42706293, -0.12401819)
 mesh = SubResource("CapsuleMesh_grg3l")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1604143197]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1604143197]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.42706293, -0.12401819)
 shape = SubResource("ConvexPolygonShape3D_vy5pj")
 
-[node name="Head" type="Node3D" parent="CharacterBody3D" unique_id=1789387280]
+[node name="Head" type="Node3D" parent="Player" unique_id=1789387280]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head" unique_id=584076566]
+[node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=584076566]
 current = true
 fov = 68.1
 
-[node name="Main" type="Node3D" parent="CharacterBody3D/Head/Camera3D" unique_id=674454424]
+[node name="Main" type="Node3D" parent="Player/Head/Camera3D" unique_id=674454424]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21648324, 0, 0)
 
-[node name="RightArm" type="Node3D" parent="CharacterBody3D/Head/Camera3D/Main" unique_id=196217352]
+[node name="RightArm" type="Node3D" parent="Player/Head/Camera3D/Main" unique_id=196217352]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22995958, 0, 0)
 
-[node name="weapon" parent="CharacterBody3D/Head/Camera3D/Main/RightArm" unique_id=689531993 instance=ExtResource("22_kpo4j")]
+[node name="weapon" parent="Player/Head/Camera3D/Main/RightArm" unique_id=689531993 instance=ExtResource("22_kpo4j")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.28011853, -0.1568588, -0.676358)
 
-[node name="LeftArm" type="Node3D" parent="CharacterBody3D/Head/Camera3D/Main" unique_id=223143158]
+[node name="LeftArm" type="Node3D" parent="Player/Head/Camera3D/Main" unique_id=223143158]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28308752, 0, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2002286932]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.25, -0.29351044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3605957, -0.25, 2.7860794)
 use_collision = true
-size = Vector3(9.75, 0.5, 12.5)
+size = Vector3(23.721191, 0.5, 33.643555)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=504781648]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
@@ -965,4 +968,133 @@ stream = ExtResource("8_0sclb")
 stream = ExtResource("9_sxkr1")
 
 [node name="Exit" type="AudioStreamPlayer2D" parent="." unique_id=1701122075]
+stream = ExtResource("9_sxkr1")
+
+[node name="Connection" type="Node" parent="." unique_id=1446314141]
+script = ExtResource("29_4n42c")
+
+[node name="multiplayertest" type="Control" parent="Connection" unique_id=1443873590]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Connection/multiplayertest" unique_id=1051621128]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99600005
+anchor_bottom = 0.998
+offset_right = 24.599976
+offset_bottom = 16.287964
+theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
+
+[node name="host" type="Button" parent="Connection/multiplayertest/Panel" unique_id=1511081029]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.43400002
+anchor_right = 0.30800003
+anchor_bottom = 0.527
+offset_left = 9.0
+offset_top = -158.00601
+offset_right = 8.779968
+offset_bottom = -157.88297
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "Host"
+script = ExtResource("30_c5snn")
+
+[node name="text" type="Label" parent="Connection/multiplayertest/Panel/host" unique_id=249408451]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 1.019
+anchor_right = 0.76400006
+anchor_bottom = 1.4030001
+offset_left = 181.07779
+offset_top = 104.42317
+offset_right = 498.24103
+offset_bottom = 132.8417
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fos0i")
+text = "Hosted on localhost"
+label_settings = SubResource("LabelSettings_3dxm6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="join" type="Button" parent="Connection/multiplayertest/Panel" unique_id=1272328145]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.43400002
+anchor_right = 0.30800003
+anchor_bottom = 0.527
+offset_left = 678.0
+offset_top = -162.00601
+offset_right = 677.77997
+offset_bottom = -161.88297
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("5_pbw6q")
+theme_override_styles/pressed = ExtResource("5_pbw6q")
+theme_override_styles/hover = ExtResource("5_pbw6q")
+text = "Join"
+script = ExtResource("30_c5snn")
+
+[node name="text" type="Label" parent="Connection/multiplayertest/Panel/join" unique_id=903334974]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 1.019
+anchor_right = 0.76400006
+anchor_bottom = 1.4030001
+offset_left = -540.9222
+offset_top = 174.42317
+offset_right = -127.75899
+offset_bottom = 202.8417
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fos0i")
+text = "Connected to : localhost"
+label_settings = SubResource("LabelSettings_3dxm6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="request" type="Label" parent="Connection/multiplayertest/Panel" unique_id=1484277660]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 1.019
+anchor_right = 0.76400006
+anchor_bottom = 1.4030001
+offset_left = -167.1
+offset_top = -168.52106
+offset_right = 150.0633
+offset_bottom = -337.5771
+theme_override_fonts/font = ExtResource("2_pbw6q")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fos0i")
+text = "Waiting for requests:"
+label_settings = SubResource("LabelSettings_3dxm6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="Connection/multiplayertest" unique_id=707841303]
+stream = ExtResource("8_0sclb")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="Connection/multiplayertest" unique_id=597172709]
+stream = ExtResource("9_sxkr1")
+
+[node name="Exit" type="AudioStreamPlayer2D" parent="Connection/multiplayertest" unique_id=1910457397]
 stream = ExtResource("9_sxkr1")

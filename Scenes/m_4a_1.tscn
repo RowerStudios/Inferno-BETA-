@@ -159,5 +159,6 @@ shadow_enabled = true
 omni_range = 4.781
 
 [node name="Walk" type="AnimationPlayer" parent="." index="2" unique_id=1412884735]
+active = false
 libraries/ = SubResource("AnimationLibrary_r6fpo")
 autoplay = &"walk"

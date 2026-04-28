@@ -28,6 +28,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, -0.33427694, 0.5199406)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cube_001:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cube:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_r6fpo"]
 resource_name = "Shoot"
@@ -61,16 +85,73 @@ tracks/1/keys = {
 "values": [Vector3(0, -0.33427694, 0.5199406), Vector3(0, 0.15839264, -0.225662), Vector3(0, -0.3785644, -0.6981785), Vector3(0, 0.15839264, -0.225662), Vector3(0, -0.33427694, 0.5199406)]
 }
 
+[sub_resource type="Animation" id="Animation_c8ffq"]
+resource_name = "walk_new"
+length = 0.8666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14366055, 0.28466073, 0.28745845, 0.42034012, 0.55867994, 0.6333333, 0.724718, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 3.4839048), Vector3(0.4084704, 0.15500855, 3.4839048), Vector3(0.57406807, -0.19574133, 3.4839048), Vector3(0.5812704, -0.18884638, 3.4839048), Vector3(0.4084704, 0.15500855, 3.4839048), Vector3(0, 0, 3.4839048), Vector3(-0.31847823, -0.1317606, 3.4839048), Vector3(-0.4229864, -0.33971864, 3.4839048), Vector3(0, 0, 3.4839048)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_001:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14366055, 0.28466073, 0.28745845, 0.42034012, 0.55867994, 0.6333333, 0.724718, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.33427694, 0.5199406), Vector3(0.4084704, -0.17926839, 0.5199406), Vector3(0.57406807, -0.53001827, 0.5199406), Vector3(0.5600365, -0.52244824, 0.5199406), Vector3(0.4084704, -0.17926839, 0.5199406), Vector3(0, -0.33427694, 0.5199406), Vector3(-0.31847823, -0.4660375, 0.5199406), Vector3(-0.4229864, -0.6739955, 0.5199406), Vector3(0, -0.33427694, 0.5199406)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cube_001:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.28745845, 0.42067093),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -0.06356489), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cube:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.28745845, 0.42067093),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -0.0635649), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r6fpo"]
 _data = {
 &"RESET": SubResource("Animation_6n4ow"),
 &"Shoot": SubResource("Animation_r6fpo"),
-&"walk": SubResource("Animation_rf2kv")
+&"walk": SubResource("Animation_rf2kv"),
+&"walk_new": SubResource("Animation_c8ffq")
 }
 
 [node name="m4a1" unique_id=689531993 instance=ExtResource("1_6n4ow")]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Cube" parent_id_path=PackedInt32Array(2040922014) index="0" unique_id=665442723]
+[node name="Cube" parent="." index="0" unique_id=2040922014]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 3.4839048)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Cube" index="0" unique_id=665442723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65822184, -7.8100333)
 visible = false
 light_color = Color(1, 1, 0, 1)

@@ -114,7 +114,6 @@ shader_parameter/bloom_spread = 2.0
 script = ExtResource("1_346fj")
 
 [node name="Control" type="Control" parent="." unique_id=1877318150]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -974,6 +973,7 @@ stream = ExtResource("9_sxkr1")
 script = ExtResource("29_4n42c")
 
 [node name="multiplayertest" type="Control" parent="Connection" unique_id=1443873590]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
